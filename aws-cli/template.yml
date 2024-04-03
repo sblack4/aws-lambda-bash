@@ -1,0 +1,35 @@
+# This AWS SAM template has been generated from your function's configuration. If
+# your function has one or more triggers, note that the AWS resources associated
+# with these triggers aren't fully specified in this template and include
+# placeholder values. Open this template in AWS Application Composer or your
+# favorite IDE and modify it to specify a serverless application with other AWS
+# resources.
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: An AWS Serverless Application Model template describing your function.
+Resources:
+  test-awscli:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Description: 'aws cli in bash'
+      MemorySize: 128
+      Timeout: 3
+      Architectures:
+        - arm64
+      EphemeralStorage:
+        Size: 512
+      EventInvokeConfig:
+        MaximumEventAgeInSeconds: 21600
+        MaximumRetryAttempts: 2
+      ImageUri: >-
+        784384215106.dkr.ecr.us-east-1.amazonaws.com/ecr-public/aws-cli/aws-cli@sha256:edbec263ae92ea4e5bdbdda5bcd24d7a0a3818f1f49994862a0698d2e8087990
+      ImageConfig:
+        Command:
+          - "sts"
+          - "get-caller-identity"
+      PackageType: Image
+      Policies:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      SnapStart:
+        ApplyOn: None
